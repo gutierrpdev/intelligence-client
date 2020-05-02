@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet';
 import store from 'store';
 import { Redirect } from 'react-router-dom';
 import {API_BASE_URL} from '../../constants/apiConstants';
-import axios from 'axios';
 import './styles.css';
 
 const isLoggedIn = () => !!store.get('loggedIn');
@@ -42,7 +41,11 @@ class Login extends React.Component {
     this.setState({ error_login: false });
     let thisRef = this;
 
-    axios.post(API_BASE_URL+'users/login', payload)
+    fetch(API_BASE_URL+'users/login', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      credentials: "include"
+    })
         .then(function (response) {
             console.log(response);
             if(response.status === 200){
