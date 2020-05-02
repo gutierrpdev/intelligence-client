@@ -34,7 +34,8 @@ class Games extends React.Component {
       method:"GET",
       credentials : 'include',
     })
-      .then(({ data }) => {
+      .then((data) => {
+        console.log(data);
         const user = data;
 
         this.setState({
