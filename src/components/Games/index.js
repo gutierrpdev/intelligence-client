@@ -4,7 +4,6 @@ import { Grid, Image, Button, Message} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import {API_BASE_URL} from '../../constants/apiConstants';
 import './styles.css';
-import { response } from 'express';
 
 class Games extends React.Component {
   constructor(props) {
@@ -32,12 +31,11 @@ class Games extends React.Component {
 
   getProfile() {
     fetch(API_BASE_URL + 'users/me', {
-      method:'GET',
-      credentials : 'include'
+      method:"GET",
+      credentials : 'include',
     })
-      .then(({data}) => {
-        console.log(data);
-        const user = data.body;
+      .then(({ data }) => {
+        const user = data;
 
         this.setState({
             blekPlayed: user.blekCompleted,
