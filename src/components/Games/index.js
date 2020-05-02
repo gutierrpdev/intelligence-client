@@ -39,9 +39,9 @@ class Games extends React.Component {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => {
-        console.log(response);
-        const user = response.body;
+      .then((res) => {
+        console.log(res);
+        const user = res.body;
 
         this.setState({
             blekPlayed: user.blekCompleted,
