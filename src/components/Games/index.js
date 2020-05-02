@@ -34,9 +34,10 @@ class Games extends React.Component {
       method:"GET",
       credentials : 'include',
     })
+    .json()
       .then((data) => {
-        console.log(data.json());
-        const user = data.json().body;
+        console.log(data);
+        const user = data.body;
 
         this.setState({
             blekPlayed: user.blekCompleted,
