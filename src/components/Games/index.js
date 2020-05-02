@@ -1,6 +1,5 @@
 import React from 'react';
 import * as axios from 'axios';
-axios.defaults.withCredentials = true;
 import { Helmet } from 'react-helmet';
 import { Grid, Image, Button, Message} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -19,6 +18,8 @@ class Games extends React.Component {
       userAge: 0,
       userGender: ''
     };
+
+    axios.defaults.withCredentials = true;
   }
 
   componentDidMount() {
