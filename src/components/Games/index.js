@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios';
+import * as axios from 'axios';
+axios.defaults.withCredentials = true;
 import { Helmet } from 'react-helmet';
 import { Grid, Image, Button, Message} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
