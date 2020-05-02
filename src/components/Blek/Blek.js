@@ -14,7 +14,9 @@ class Blek extends React.Component{
 
     this.unityContent.on("LogEvent", eventJSON => {
       const event = JSON.parse(eventJSON);
-      axios.post(API_BASE_URL + 'events', event, {
+      axios(API_BASE_URL + 'events', {
+        method: "post",
+        data: event, 
         withCredentials: true
       })
       .then(response => console.log(response));
@@ -25,7 +27,11 @@ class Blek extends React.Component{
       const payload = {
         blekCompleted: true
       };
-      axios.patch(API_BASE_URL + 'users/me', payload, {withCredentials: true})
+      axios(API_BASE_URL + 'users/me', {
+        method: "patch",
+        data: payload,
+        withCredentials: true
+      })
       .then(response => {
         console.log(response);
         history.push('/games');

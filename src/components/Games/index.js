@@ -1,5 +1,5 @@
 import React from 'react';
-import { get } from 'axios';
+import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import { Grid, Image, Button, Message} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,10 @@ class Games extends React.Component {
   }
 
   getProfile() {
-    get(API_BASE_URL + 'users/me', {withCredentials : true})
+    axios(API_BASE_URL + 'users/me', {
+      method: "get",
+      withCredentials : true
+    })
       .then(({ data }) => {
         const user = data;
 
