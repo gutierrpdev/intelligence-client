@@ -91,7 +91,11 @@ class Login extends React.Component {
     this.setState({ error_reg: false });
     let thisRef = this;
 
-    axios.post(API_BASE_URL+'users', payload)
+    fetch(API_BASE_URL+'users', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      credentials: "include"
+    })
         .then(function (response) {
           console.log(response);
             if(response.status === 201){
