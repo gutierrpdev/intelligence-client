@@ -33,10 +33,7 @@ class Games extends React.Component {
   getProfile() {
     fetch(API_BASE_URL + 'users/me', {
       method:'GET',
-      credentials : 'include',
-      headers: {
-        'Accept': 'application/json, text/plain, */*'
-      }
+      credentials : 'include'
     })
       .then(({data}) => {
         console.log(data);
