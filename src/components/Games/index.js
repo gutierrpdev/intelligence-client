@@ -31,10 +31,9 @@ class Games extends React.Component {
   }
 
   getProfile() {
-    axios.defaults.withCredentials = true;
-    axios(API_BASE_URL + 'users/me', {
-      method: "get",
-      withCredentials : true
+    fetch(API_BASE_URL + 'users/me', {
+      method:"GET",
+      credentials : 'include'
     })
       .then(({ data }) => {
         const user = data;
