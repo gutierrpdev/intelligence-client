@@ -35,13 +35,12 @@ class Games extends React.Component {
       method:'GET',
       credentials : 'include',
       headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
+        'Accept': 'application/json, text/plain, */*'
       }
     })
-      .then((res) => {
-        console.log(res);
-        const user = res.body;
+      .then(function(response) {
+        console.log(response);
+        const user = response.body;
 
         this.setState({
             blekPlayed: user.blekCompleted,
