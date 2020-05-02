@@ -4,6 +4,7 @@ import { Grid, Image, Button, Message} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import {API_BASE_URL} from '../../constants/apiConstants';
 import './styles.css';
+import { response } from 'express';
 
 class Games extends React.Component {
   constructor(props) {
@@ -38,8 +39,9 @@ class Games extends React.Component {
         'Content-Type': 'application/json'
       }
     })
-      .then(({ data }) => {
-        const user = data;
+      .then(response => {
+        console.log(response);
+        const user = response.body;
 
         this.setState({
             blekPlayed: user.blekCompleted,
