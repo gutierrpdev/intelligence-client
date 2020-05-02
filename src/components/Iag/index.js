@@ -8,12 +8,23 @@ import Games from '../Games/index';
 import Blek from '../Blek/Blek';
 import Edge from '../Edge/Edge';
 import Unpossible from '../Unpossible/Unpossible';
+import {API_BASE_URL} from '../../constants/apiConstants';
 
 const isLoggedIn = () => !!store.get('loggedIn');
 
 const handleLogout = history => () => {
-  store.remove('loggedIn');
-  history.push('/login');
+  fetch(API_BASE_URL + 'users/logout', {
+      method:"POST",
+      credentials : 'include'
+  })
+  .then((res) => {
+    store.remove('loggedIn');
+    history.push('/login');
+  })
+  .catch(err => {
+    console.log(err);
+  })
+  
 };
 
 class Iag extends React.Component {
