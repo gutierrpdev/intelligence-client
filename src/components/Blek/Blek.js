@@ -17,7 +17,10 @@ class Blek extends React.Component{
       fetch(API_BASE_URL + 'events', {
         method: 'POST',
         body: JSON.stringify(event), 
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
       .then(response => console.log(response))
       .catch(err => console.log(err));
