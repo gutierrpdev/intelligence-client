@@ -1,6 +1,5 @@
 import React from 'react';
 import Unity, { UnityContent } from "react-unity-webgl";
-import axios from 'axios';
 import {API_BASE_URL} from '../../constants/apiConstants';
 
 class Unpossible extends React.Component{
@@ -14,26 +13,28 @@ class Unpossible extends React.Component{
 
     this.unityContent.on("LogEvent", eventJSON => {
       const event = JSON.parse(eventJSON);
-      axios(API_BASE_URL + 'events', {
-        method: "post",
-        data: event, 
-        withCredentials: true,
+      console.log(event);
+      fetch(API_BASE_URL + 'events', {
+        method: 'POST',
+        body: JSON.stringify(event), 
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      .then(response => console.log(response));
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
     });
 
     const { history } = this.props;
     this.unityContent.on("GameOver", function () {
       const payload = {
-        unpossibleCompleted: true
+        blekCompleted: true
       };
-      axios(API_BASE_URL + 'users/me', {
-        method: "patch",
-        data: payload,
-        withCredentials: true,
+      fetch(API_BASE_URL + 'users/me', {
+        method: 'PATCH',
+        body: JSON.stringify(payload),
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         }
@@ -41,6 +42,9 @@ class Unpossible extends React.Component{
       .then(response => {
         console.log(response);
         history.push('/games');
+      })
+      .catch(err => {
+        console.log(err);
       });
     });
 

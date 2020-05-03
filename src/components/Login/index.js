@@ -44,14 +44,9 @@ class Login extends React.Component {
     fetch(API_BASE_URL+'users/login', {
       method: 'POST',
       body: JSON.stringify(payload),
-      credentials: 'include',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      }
+      credentials: "include"
     })
         .then(function (response) {
-            console.log(response);
             if(response.status === 200){
                 store.set('loggedIn', true);
                 history.push('/games');
@@ -95,17 +90,12 @@ class Login extends React.Component {
     this.setState({ error_reg: false });
     let thisRef = this;
 
-    fetch(API_BASE_URL+'users', {
+    fetch(API_BASE_URL+'users/login', {
       method: 'POST',
       body: JSON.stringify(payload),
-      credentials: "include",
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      }
+      credentials: "include"
     })
         .then(function (response) {
-          console.log(response);
             if(response.status === 201){
                 store.set('loggedIn', true);
                 history.push('/games');
