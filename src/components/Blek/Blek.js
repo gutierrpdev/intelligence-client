@@ -34,7 +34,10 @@ class Blek extends React.Component{
       fetch(API_BASE_URL + 'users/me', {
         method: 'PATCH',
         body: JSON.stringify(payload),
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
       .then(response => {
         console.log(response);

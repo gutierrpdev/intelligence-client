@@ -17,7 +17,10 @@ class Edge extends React.Component{
       axios(API_BASE_URL + 'events', {
         method: "post",
         data: event, 
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
       .then(response => console.log(response));
     });
@@ -30,7 +33,10 @@ class Edge extends React.Component{
       axios(API_BASE_URL + 'users/me', {
         method: "patch",
         data: payload,
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
       .then(response => {
         console.log(response);

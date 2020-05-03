@@ -30,7 +30,10 @@ class Unpossible extends React.Component{
       axios(API_BASE_URL + 'users/me', {
         method: "patch",
         data: payload,
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
       .then(response => {
         console.log(response);
