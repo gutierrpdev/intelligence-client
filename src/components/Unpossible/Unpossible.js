@@ -17,7 +17,10 @@ class Unpossible extends React.Component{
       axios(API_BASE_URL + 'events', {
         method: "post",
         data: event, 
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
       .then(response => console.log(response));
     });
