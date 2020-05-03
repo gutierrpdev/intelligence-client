@@ -13,6 +13,7 @@ class Blek extends React.Component{
 
     this.unityContent.on("LogEvent", eventJSON => {
       const event = JSON.parse(eventJSON);
+      console.log(event);
       fetch(API_BASE_URL + 'events', {
         method: 'POST',
         body: JSON.stringify(event), 
