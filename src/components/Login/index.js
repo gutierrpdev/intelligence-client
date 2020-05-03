@@ -93,7 +93,7 @@ class Login extends React.Component {
     this.setState({ error_reg: false });
     let thisRef = this;
 
-    fetch(API_BASE_URL+'users/login', {
+    fetch(API_BASE_URL+'users', {
       method: 'POST',
       body: JSON.stringify(payload),
       credentials: "include",
