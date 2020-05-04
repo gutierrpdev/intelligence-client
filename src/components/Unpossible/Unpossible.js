@@ -30,7 +30,7 @@ class Unpossible extends React.Component{
     this.unityContent.on("GameOver", function () {
       const payload = {
         unpossibleCompleted: true
-      };
+      }; 
       fetch(API_BASE_URL + 'users/me', {
         method: 'PATCH',
         body: JSON.stringify(payload),
