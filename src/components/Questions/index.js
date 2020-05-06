@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Message, Grid, Image } from 'semantic-ui-react'
+import { Form, Message, Grid, Image, Button } from 'semantic-ui-react'
 import { Helmet } from 'react-helmet';
 import {API_BASE_URL} from '../../constants/apiConstants';
 
@@ -156,7 +156,7 @@ class Questions extends React.Component{
                 />
                 </Form.Group>
           </Grid.Column>
-          <Form.Button attached='bottom' onClick={this.sendForm} disabled={this.state.questionsCompleted}>Enviar</Form.Button>
+          <Button attached='bottom' onClick={this.sendForm} disabled={this.state.questionsCompleted}>Enviar</Button>
         </Grid>
             </div>
                 );
