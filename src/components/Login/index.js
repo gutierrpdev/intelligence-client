@@ -47,6 +47,7 @@ class Login extends React.Component {
     fetch(API_BASE_URL+'users/login', {
       method: 'POST',
       body: JSON.stringify(payload),
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       }
@@ -102,7 +103,8 @@ class Login extends React.Component {
       body: JSON.stringify(payload),
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      credentials: 'include'
     })
         .then(function (response) {
             if(response.status === 201){

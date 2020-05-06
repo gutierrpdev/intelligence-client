@@ -34,7 +34,6 @@ class Games extends React.Component {
     fetch(API_BASE_URL + 'users/me', {
       method:"GET",
       credentials : 'include',
-      mode: 'same-origin',
       headers: {
         'Accept': 'application/json'
       }
