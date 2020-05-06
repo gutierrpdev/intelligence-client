@@ -1,10 +1,7 @@
 import React from 'react';
 import { Button, Divider, Form, Grid, Segment, Header, Icon, Dropdown, Message } from 'semantic-ui-react'
 import { Helmet } from 'react-helmet';
-import store from 'store';
-import { Redirect } from 'react-router-dom';
 import {API_BASE_URL} from '../../constants/apiConstants';
-import './styles.css';
 
 
 class Questions extends React.Component{

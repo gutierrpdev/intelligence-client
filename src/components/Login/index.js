@@ -67,7 +67,6 @@ class Login extends React.Component {
   onSubmitRegister(e) {
     e.preventDefault();
     
-    console.log(this.state);
     if(this.state.password_reg !== this.state.confirm_pass){
       return this.setState({
         error_reg: true,

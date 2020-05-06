@@ -54,6 +54,12 @@ class Iag extends React.Component {
               Juegos
             </Menu.Item>
         </Link>
+        <Link to="/questions">
+            <Menu.Item name="questions">
+              <Icon name="question" />
+              Preguntas
+            </Menu.Item>
+        </Link>
         <Menu.Menu position='right'>
         <Menu.Item name="logout" onClick={handleLogout(history)}>
             <Icon name="power" />
