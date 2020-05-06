@@ -88,8 +88,10 @@ class Questions extends React.Component{
                 'Una última cosilla... por favor, responde a las siguientes preguntas y haz click en "Enviar" cuando hayas terminado. Muchas gracias por tu ayuda.'}
                 />
 
-                <Container textAlign='center' fluid>
-                <Form.Group inline>
+        <Grid celled centered columns={3}>
+          <Grid.Column attached>
+            <Image src='/img/edge.jpg' size="large" rounded centered/>
+            <Form.Group inline>
                 <label>¿Habías jugado alguna vez a EDGE?</label>
                 <Form.Radio
                     disabled={this.state.questionsCompleted}
@@ -109,7 +111,10 @@ class Questions extends React.Component{
                 />
                 </Form.Group>
 
-                <Form.Group inline>
+          </Grid.Column>
+          <Grid.Column attached>
+            <Image src='/img/blek.jpg' size="large" rounded centered/>
+            <Form.Group inline>
                 <label>¿Habías jugado alguna vez a BLEK?</label>
                 <Form.Radio
                     disabled={this.state.questionsCompleted}
@@ -128,8 +133,10 @@ class Questions extends React.Component{
                     onChange={this.handleChange}
                 />
                 </Form.Group>
-
-                <Form.Group inline>
+          </Grid.Column>
+          <Grid.Column>
+            <Image src='/img/unpossible.png' size="large" rounded centered/>
+            <Form.Group inline>
                 <label>¿Habías jugado alguna vez a UNPOSSIBLE?</label>
                 <Form.Radio
                     disabled={this.state.questionsCompleted}
@@ -148,8 +155,9 @@ class Questions extends React.Component{
                     onChange={this.handleChange}
                 />
                 </Form.Group>
-                <Form.Button onClick={this.sendForm} disabled={this.state.questionsCompleted}>Enviar</Form.Button>
-                </Container>
+          </Grid.Column>
+          <Form.Button attached='bottom' onClick={this.sendForm} disabled={this.state.questionsCompleted}>Enviar</Form.Button>
+        </Grid>
             </div>
                 );
     }
