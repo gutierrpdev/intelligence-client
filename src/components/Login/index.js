@@ -195,6 +195,7 @@ class Login extends React.Component {
                 placeholder='Nombre de usuario...'
                 name = 'username_reg'
                 onChange={this.handleChange}
+                required
               />
               <Form.Input
                 icon='lock'
@@ -204,6 +205,7 @@ class Login extends React.Component {
                 type='password'
                 name='password_reg'
                 onChange={this.handleChange}
+                required
               />
               <Form.Input
                 icon='lock'
@@ -213,6 +215,7 @@ class Login extends React.Component {
                 type='password'
                 name='confirm_pass'
                 onChange={this.handleChange}
+                required
               />
 
               <Form.Input
@@ -222,11 +225,13 @@ class Login extends React.Component {
                 placeholder='Edad...'
                 name='age_reg'
                 onChange={this.handleChange}
+                required
               />
 
               <Form.Input 
                 label='Género'
                 placeholder='Género...'
+                required
                 >
                 <Dropdown 
                   icon='venus mars'

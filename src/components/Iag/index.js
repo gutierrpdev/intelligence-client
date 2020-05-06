@@ -8,6 +8,7 @@ import Games from '../Games/index';
 import Blek from '../Blek/Blek';
 import Edge from '../Edge/Edge';
 import Unpossible from '../Unpossible/Unpossible';
+import Questions from '../Questions/index';
 import {API_BASE_URL} from '../../constants/apiConstants';
 
 const isLoggedIn = () => !!store.get('loggedIn');
@@ -74,6 +75,10 @@ class Iag extends React.Component {
 
         <div>
           <Route path="/unpossible" component={Unpossible} />
+        </div>
+
+        <div>
+          <Route path="/questions" component={Questions} />
         </div>
       </div>
     );
