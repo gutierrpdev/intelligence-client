@@ -60,10 +60,7 @@ class Questions extends React.Component{
     getProfile() {
         fetch(API_BASE_URL + 'users/me', {
           method:"GET",
-          credentials : 'include',
-          headers: {
-            'Content-Type': 'application/json'
-          }
+          credentials : 'include'
         })
           .then((data) => {
             return data.json();
