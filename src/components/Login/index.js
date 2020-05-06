@@ -143,6 +143,12 @@ class Login extends React.Component {
             <Icon name='chess' circular />
             <Header.Content>Juegos para la medida de la inteligencia</Header.Content>
           </Header>
+
+          <Message
+              icon='exclamation circle' size='medium'
+              header='Compatibilidad de los juegos'
+              content='Esta plataforma está diseñada para ser usada desde un navegador web de escritorio (Chrome, Edge o Firefox). Los juegos no funcionarán si tratas de acceder desde un dispositivo móvil!'
+            />
           <Segment placeholder className="login-body">
           <Grid columns={2} relaxed='very' stackable verticalAlign='middle' className="padded-login">        
           <Grid.Column >
