@@ -61,7 +61,9 @@ class Questions extends React.Component{
         fetch(API_BASE_URL + 'users/me', {
           method:"GET",
           credentials : 'include',
-          mode: 'cors'
+          headers: {
+            'Accept': 'application/json'
+          }
         })
           .then((data) => {
             return data.json();
