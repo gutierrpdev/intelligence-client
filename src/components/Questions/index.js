@@ -159,7 +159,13 @@ class Questions extends React.Component{
                 />
                 </Form.Group>
           </Grid.Column>
-          <Button attached='bottom' onClick={this.sendForm} disabled={this.state.questionsCompleted}>Enviar</Button>
+          <Button 
+            attached='bottom' 
+            onClick={this.sendForm} 
+            disabled={this.knowsBlek === '' || this.knowsEdge === '' || this.knowsUnpossible === ''}
+            color={this.state.questionsCompleted?'green':'blue'}>
+                Enviar
+            </Button>
         </Grid>
             </div>
                 );
