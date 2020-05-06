@@ -15,7 +15,8 @@ class Games extends React.Component {
       unpossiblePlayed: false,
       userId: '',
       userAge: 0,
-      userGender: ''
+      userGender: '',
+      questionsCompleted: false
     };
   }
 
@@ -46,7 +47,8 @@ class Games extends React.Component {
             unpossiblePlayed: user.unpossibleCompleted,
             userId: user.userId,
             userAge: user.age,
-            userGender: user.gender
+            userGender: user.gender,
+            questionsCompleted: user.questionsCompleted
         });
       })
       .catch(e => {
@@ -60,7 +62,8 @@ class Games extends React.Component {
       'Pulsa sobre "Empezar Juego!" bajo cada imagen para lanzarlo en tu navegador.',
       'Una vez abierto un juego, este debe ser completado "del tirón", evitando salir del mismo durante la partida. Cada actividad no debería llevar más de 15 minutos en ser completada.',
       'Al principio de cada juego aparecerá una sección de tutorial para familiarizarte con las mecánicas del mismo. Una vez terminado el tutorial, podrás continuar con el juego en sí y tendrás un tiempo límite para completar todos los niveles que puedas. Se registrarán datos relativos a tu interacción con el juego.',
-      'Es necesario completar las tres pruebas para que los resultados sean válidos. ¡Muchas gracias por tu colaboración!'
+      'Es necesario completar las tres pruebas para que los resultados sean válidos.',
+      'No olvides hacer click en la sección de Preguntas del menú cuando acabes con los juegos. ¡Muchas gracias por tu colaboración!'
     ];
     return (
         <div>

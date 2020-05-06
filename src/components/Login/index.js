@@ -22,7 +22,9 @@ class Login extends React.Component {
       gender_reg: '',
       error_login: false,
       error_reg: false,
-      error_reg_mes: ''
+      error_reg_mes: '',
+      login_loading: false,
+      reg_loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -32,6 +34,7 @@ class Login extends React.Component {
 
   onSubmitLogin(e) {
     e.preventDefault();
+    this.setState({login_loading : true});
     
     const payload={
         "userId":this.state.username_login,
@@ -52,15 +55,17 @@ class Login extends React.Component {
         .then(function (response) {
             if(response.status === 200){
                 store.set('loggedIn', true);
+                thisRef.setState({login_loading : false});
                 history.push('/games');
             }
             else {
-              return thisRef.setState({ error_login: true });
+              return thisRef.setState({ error_login: true, login_loading: false });
             }
         })
         .catch(function (error) {
             console.log(error);
             thisRef.setState({ error_login: true });
+            thisRef.setState({login_loading : false});
         });
   }
 
@@ -81,6 +86,7 @@ class Login extends React.Component {
         error_reg_mes: 'Age must be a valid number!'
       });
     }
+    this.setState({reg_loading : true});
 
     const payload={
         "userId":this.state.username_reg,
@@ -108,14 +114,16 @@ class Login extends React.Component {
             else {
               return thisRef.setState({ 
                 error_reg: true,
-                error_reg_mes: "Username already in use or incomplete field."
+                error_reg_mes: "Username already in use or incomplete field.",
+                reg_loading: false
               });
             }
         })
         .catch(function (error) {
           return thisRef.setState({ 
             error_reg: true,
-            error_reg_mes: "Username already in use or incomplete field."
+            error_reg_mes: "Username already in use or incomplete field.",
+            reg_loading: false
           });
         });
   }
@@ -146,7 +154,7 @@ class Login extends React.Component {
           <Message
               icon='exclamation circle' size='medium'
               header='Compatibilidad de los juegos'
-              content='Esta plataforma está diseñada para ser usada desde un navegador web de escritorio (Chrome, Edge o Firefox). Los juegos no funcionarán si tratas de acceder desde un dispositivo móvil!'
+              content='Esta plataforma está diseñada para ser usada desde un navegador web de PC (sólo Chrome, Edge o Firefox). ¡Los juegos no funcionarán si tratas de acceder desde un dispositivo móvil!'
             />
           <Segment placeholder className="login-body">
           <Grid columns={2} relaxed='very' stackable verticalAlign='middle' className="padded-login">        
@@ -156,7 +164,7 @@ class Login extends React.Component {
                 <p>Invalid username/ password entered. Please try again!</p>
               </Message>
             }
-            <Form>
+            <Form loading={this.state.login_loading}>
               <Form.Input
                 icon='user'
                 iconPosition='left'
@@ -186,7 +194,7 @@ class Login extends React.Component {
                 <p>{this.state.error_reg_mes}</p>
               </Message>
             }
-            <Form>
+            <Form loading={this.state.reg_loading}>
               <Form.Input
                 icon='user'
                 iconPosition='left'

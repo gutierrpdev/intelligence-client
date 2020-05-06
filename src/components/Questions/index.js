@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Message } from 'semantic-ui-react'
+import { Form, Message, Container } from 'semantic-ui-react'
 import { Helmet } from 'react-helmet';
 import {API_BASE_URL} from '../../constants/apiConstants';
 
@@ -85,9 +85,10 @@ class Questions extends React.Component{
                 icon='question circle outline' size='medium'
                 header='Preguntas adicionales'
                 content={this.state.questionsCompleted?'Ya has completado esta sección. ¡Muchas gracias por tu colaboración!':
-                'Por favor, tómate un minuto para responder a las siguientes preguntas y haz click en "Enviar" cuando hayas terminado. Muchas gracias por tu ayuda.'}
+                'Una última cosilla... por favor, responde a las siguientes preguntas y haz click en "Enviar" cuando hayas terminado. Muchas gracias por tu ayuda.'}
                 />
 
+                <Container textAlign='center' fluid>
                 <Form.Group inline>
                 <label>¿Habías jugado alguna vez a EDGE?</label>
                 <Form.Radio
@@ -148,6 +149,7 @@ class Questions extends React.Component{
                 />
                 </Form.Group>
                 <Form.Button onClick={this.sendForm} disabled={this.state.questionsCompleted}>Enviar</Form.Button>
+                </Container>
             </div>
                 );
     }
