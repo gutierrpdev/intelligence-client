@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Message, Grid, Image, Button } from 'semantic-ui-react'
+import { Form, Message, Grid, Image, Button, Checkbox } from 'semantic-ui-react'
 import { Helmet } from 'react-helmet';
 import {API_BASE_URL} from '../../constants/apiConstants';
 
