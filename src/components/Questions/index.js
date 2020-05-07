@@ -9,34 +9,27 @@ class Questions extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            knowsBlek : '',
-            knowsEdge : '',
-            knowsUnpossible: '',
-            questionsCompleted: false,
-            error: false
+            knowsBlek : 0,
+            knowsEdge : 0,
+            knowsUnpossible: 0,
+            questionsCompleted: false
         }
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleResult = this.handleResult.bind(this);
         this.sendForm = this.sendForm.bind(this);
     }
 
     handleChange(e, {name, value}) {
         this.setState({ [name]: value });
-    }
+      }
 
     sendForm(e){
         e.preventDefault();
 
-        this.setState({error: this.knowsBlek === '' || this.knowsEdge === '' || this.knowsUnpossible === ''});
-        if(this.state.error) return;
-        this.setState({questionsCompleted : true});
+        this.setState({questionsCompleted: true});
+        const payload = this.state;
+        const {history} = this.props;
 
-        const payload = {
-            knowsBlek: this.state.knowsBlek === 'yes',
-            knowsEdge: this.state.knowsEdge === 'yes',
-            knowsUnpossible: this.state.knowsUnpossible === 'yes',
-            questionsCompleted: true
-        };
           fetch(API_BASE_URL + 'users/me', {
             method: 'PATCH',
             body: JSON.stringify(payload),
@@ -47,6 +40,7 @@ class Questions extends React.Component{
           })
           .then(response => {
             console.log(response);
+            history.push('/games');
           })
           .catch(err => {
             console.log(err);
@@ -55,6 +49,11 @@ class Questions extends React.Component{
 
     componentDidMount() {
         this.getProfile();
+
+        if(this.state.questionsCompleted){
+            const {history} = this.props;
+            history.push('/games');
+        }
     }
 
     getProfile() {
@@ -70,7 +69,8 @@ class Questions extends React.Component{
           })
           .then((res)=>{
             const user = res;
-            this.setState({questionsCompleted : user.questionsCompleted});
+            this.setState({...user});
+            console.log(this.state);
           })
           .catch(e => {
             console.log(e);
@@ -78,6 +78,8 @@ class Questions extends React.Component{
       }
 
     render(){
+
+        const values = [0, 1, 2, 3, 4, 5, 6, 7];
         return(
             <div>
                 <Helmet>
@@ -88,81 +90,76 @@ class Questions extends React.Component{
                 icon='question circle outline' size='medium'
                 header='Preguntas adicionales'
                 content={this.state.questionsCompleted?'Ya has completado esta sección. ¡Muchas gracias por tu colaboración!':
-                'Una última cosilla... por favor, responde a las siguientes preguntas y haz click en "Enviar" cuando hayas terminado. Muchas gracias por tu ayuda.'}
+                `Antes de empezar, nos gustaría que valoraras tu nivel de conocimiento de los juegos a los que jugarás en esta plataforma.
+                 Para ello, para cada uno de los juegos siguientes, por favor, valora del 0 al 7 tu grado de familiaridad o destreza en el
+                  mismo, siendo 0 = "No lo he jugado nunca" y 7 = "Lo he jugado extensivamente". Muchas gracias por tu ayuda.`}
                 />
 
         <Grid celled centered columns={3}>
           <Grid.Column attached>
             <Image src='/img/edge.jpg' size="large" rounded centered/>
+            <label>Valora tu nivel de experiencia con EDGE:</label>
             <Form.Group inline>
-                <label>¿Habías jugado alguna vez a EDGE?</label>
-                <Form.Radio
-                    disabled={this.state.questionsCompleted}
-                    label='Sí'
-                    name='knowsEdge'
-                    value='yes'
-                    checked={this.state.knowsEdge === 'yes'}
-                    onChange={this.handleChange}
-                />
-                <Form.Radio
-                    disabled={this.state.questionsCompleted}
-                    label='No'
-                    name='knowsEdge'
-                    value='no'
-                    checked={this.state.knowsEdge === 'no'}
-                    onChange={this.handleChange}
-                />
-                </Form.Group>
+            {
+                values.map(val => {
+                    <Form.Field>
+                        <Checkbox
+                            radio
+                            label={val}
+                            name='knowsEdge'
+                            value={val}
+                            checked={this.state.knowsEdge === {val}}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Field>
+                })
+            }
+            </Form.Group>
 
           </Grid.Column>
           <Grid.Column attached>
             <Image src='/img/blek.jpg' size="large" rounded centered/>
+            <label>Valora tu nivel de experiencia con BLEK:</label>
             <Form.Group inline>
-                <label>¿Habías jugado alguna vez a BLEK?</label>
-                <Form.Radio
-                    disabled={this.state.questionsCompleted}
-                    label='Sí'
-                    name='knowsBlek'
-                    value='yes'
-                    checked={this.state.knowsBlek === 'yes'}
-                    onChange={this.handleChange}
-                />
-                <Form.Radio
-                    disabled={this.state.questionsCompleted}
-                    label='No'
-                    name='knowsBlek'
-                    value='no'
-                    checked={this.state.knowsBlek === 'no'}
-                    onChange={this.handleChange}
-                />
-                </Form.Group>
+            {
+                values.map(val => {
+                    <Form.Field>
+                        <Checkbox
+                            radio
+                            label={val}
+                            name='knowsBlek'
+                            value={val}
+                            checked={this.state.knowsBlek === {val}}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Field>
+                })
+            }
+            </Form.Group>
           </Grid.Column>
           <Grid.Column>
             <Image src='/img/unpossible.png' size="large" rounded centered/>
+            <label>Valora tu nivel de experiencia con UNPOSSIBLE:</label>
             <Form.Group inline>
-                <label>¿Habías jugado alguna vez a UNPOSSIBLE?</label>
-                <Form.Radio
-                    disabled={this.state.questionsCompleted}
-                    label='Sí'
-                    name='knowsUnpossible'
-                    value='yes'
-                    checked={this.state.knowsUnpossible === 'yes'}
-                    onChange={this.handleChange}
-                />
-                <Form.Radio
-                    disabled={this.state.questionsCompleted}
-                    label='No'
-                    name='knowsUnpossible'
-                    value='no'
-                    checked={this.state.knowsUnpossible === 'no'}
-                    onChange={this.handleChange}
-                />
-                </Form.Group>
+            {
+                values.map(val => {
+                    <Form.Field>
+                        <Checkbox
+                            radio
+                            label={val}
+                            name='knowsUnpossible'
+                            value={val}
+                            checked={this.state.knowsUnpossible === {val}}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Field>
+                })
+            }
+            </Form.Group>
           </Grid.Column>
           <Button 
             attached='bottom' 
             onClick={this.sendForm} 
-            disabled={this.knowsBlek === '' || this.knowsEdge === '' || this.knowsUnpossible === ''}
             color={this.state.questionsCompleted?'green':'blue'}>
                 Enviar
             </Button>

@@ -109,7 +109,7 @@ class Login extends React.Component {
         .then(function (response) {
             if(response.status === 201){
                 store.set('loggedIn', true);
-                history.push('/games');
+                history.push('/questions');
             }
             else {
               return thisRef.setState({ 

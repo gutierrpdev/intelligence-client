@@ -22,11 +22,10 @@ class Games extends React.Component {
 
   componentDidMount() {
     this.getProfile();
-  }
 
-  componentWillReceiveProps({ location = {} }) {
-    if (location.pathname === '/games' && location.pathname !== this.props.location.pathname) {
-      this.getProfile();
+    if(this.state.questionsCompleted){
+      const {history} = this.props;
+      history.push('/questions');
     }
   }
 
